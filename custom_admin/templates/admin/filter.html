@@ -1,0 +1,17 @@
+{% load i18n admin_urls %}
+<details data-filter-title="{{ title }}" open>
+  <summary>
+    {% blocktranslate with filter_title=title %} By {{ filter_title }} {% endblocktranslate %}
+  </summary>
+  <select
+    name="{{ spec.lookup_kwarg }}"
+    hx-get="./partial/"
+    hx-target="#changelist .changelist-form-container"
+  >
+    {% for choice in choices %}
+      <option value="{{ choice.display }}" {% if choice.selected %} selected {% endif %}>
+        {{ choice.display }}
+      </option>
+    {% endfor %}
+  </select>
+</details>
